@@ -7,21 +7,28 @@ class Produk extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("produk_model");
+        $this->load->model("Produk_model");
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data["produk"] = $this->produk_model->getAll();
-        $this->load->view("shop_all", $data);
+        $data['judul'] = 'TES';
+        $data['produk'] = $this->Produk_model->getAll();
+        $this->load->view('templates/Navbar', $data);
+        $this->load->view('admin/shop_all', $data);
+        $this->load->view('templates/footer');
+        
     }
 
     public function add()
     {
-        $produk = $this->produk_model;
+        $data['judul'] = 'Form Tambah Data';
+        $produk = $this->Produk_model;
         $validation = $this->form_validation;
         $validation->set_rules($produk->rules());
+        $this->load->view('templates/Navbar', $data);
+        $this->load->view('templates/footer');
 
         if ($validation->run()) {
             $this->load->library('upload');
@@ -48,10 +55,14 @@ class Produk extends CI_Controller
             $image1 = $dataInfo[0]['file_name'];
             $image2 = $dataInfo[1]['file_name'];
             $produk->save($image1,$image2);
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            // $this->session->set_flashdata('success', 'Berhasil disimpan');
+            $this->load->view("admin/input");
+        }
+        else{
+            $this->load->view("admin/input");
         }
 
-        $this->load->view("input");
+        
     }
 
     public function edit($id = null)

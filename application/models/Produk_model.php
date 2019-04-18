@@ -4,11 +4,11 @@ class Produk_model extends CI_Model
 {
     private $_table = "produk";
 
-    public $produk_id;
+    public $id;
     public $nama;
-    public $harga;
+    public $harga = 0;
     public $jenis;
-    public $jumlah;
+    public $jumlah = 0;
     public $img;
     public $img2;
 
@@ -23,21 +23,17 @@ class Produk_model extends CI_Model
             'label' => 'Harga',
             'rules' => 'numeric'],
 
-            ['field' => 'jenis',
-            'label' => 'Jenis',
-            'rules' => 'required'],
-
             ['field' => 'jumlah',
             'label' => 'Jumlah',
-            'rules' => 'numeric'],
+            'rules' => 'numeric']
 
-            ['field' => 'img',
-            'label' => 'Img',
-            'rules' => 'required'],
+            // ['field' => 'img',
+            // 'label' => 'Img',
+            // 'rules' => 'required'],
             
-            ['field' => 'img2',
-            'label' => 'Img2',
-            'rules' => 'required']
+            // ['field' => 'img2',
+            // 'label' => 'Img2',
+            // 'rules' => 'required']
         ];
     }
 
@@ -48,13 +44,13 @@ class Produk_model extends CI_Model
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["produk_id" => $id])->row();
+        return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
     public function save($image1,$image2)
     {
         $post = $this->input->post();
-        // $this->produk_id = uniqid();
+        // $this->id = uniqid();
         $this->nama = $post["nama"];
         $this->harga = $post["harga"];
         $this->jenis = $post["jenis"];
@@ -73,31 +69,31 @@ class Produk_model extends CI_Model
         $this->jumlah = $post["jumlah"];
         $this->img = $image1;
         $this->img2 = $image2;
-        $this->db->update($this->_table, $this, array('produk_id' => $post['id']));
+        $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
 
     public function delete($id)
     {
-        return $this->db->delete($this->_table, array("produk_id" => $id));
+        return $this->db->delete($this->_table, array("id" => $id));
     }
 
-    private function _uploadImage()
-    {
-    $config['upload_path']          = './images/';
-    $config['allowed_types']        = 'jpeg|jpg|png';
-    $config['file_name']            = $this->product_id;
-    $config['overwrite']            = true;
-    $config['max_size']             = 1024; // 1MB
-    // $config['max_width']            = 1024;
-    // $config['max_height']           = 768;
+    // private function _uploadImage()
+    // {
+    // $config['upload_path']          = './images/';
+    // $config['allowed_types']        = 'jpeg|jpg|png';
+    // $config['file_name']            = $this->product_id;
+    // $config['overwrite']            = true;
+    // $config['max_size']             = 1024; // 1MB
+    // // $config['max_width']            = 1024;
+    // // $config['max_height']           = 768;
 
-    $this->load->library('upload', $config);
+    // $this->load->library('upload', $config);
 
-    if ($this->upload->do_upload('image')) {
-        return $this->upload->data("file_name");
-    }
+    // if ($this->upload->do_upload('image')) {
+    //     return $this->upload->data("file_name");
+    // }
     
-    return "default.jpg";
-    }
+    // return "default.jpg";
+    // }
 
 }

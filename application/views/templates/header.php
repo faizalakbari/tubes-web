@@ -27,10 +27,11 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="<?= base_url(); ?>">Home</a>
-                    <a class="nav-item nav-link" href="<?= base_url(); ?>mahasiswa">Mahasiswa</a>
+                    <a class="nav-item nav-link" href="<?= base_url(); ?>produk">Mahasiswa</a>
                     <a class="nav-item nav-link" href="#">About</a>
 
                 </div>
             </div>
+            <a href="<?= base_url(); ?>produk/add" class="btn btn-primary">Tambah Data Mahasiswa</a>
         </div>
     </nav> 
