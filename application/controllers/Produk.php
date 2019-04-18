@@ -14,7 +14,7 @@ class Produk extends CI_Controller
     public function index()
     {
         $data["produk"] = $this->produk_model->getAll();
-        // $this->load->view("admin/product/list", $data);
+        $this->load->view("shop_all", $data);
     }
 
     public function add()
@@ -24,11 +24,34 @@ class Produk extends CI_Controller
         $validation->set_rules($produk->rules());
 
         if ($validation->run()) {
-            $produk->save();
+            $this->load->library('upload');
+            $dataInfo = array();
+            $files = $_FILES;
+            $cpt = count($_FILES['userfile']['name']);
+            for($i=0; $i<$cpt; $i++)
+            {           
+                $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+                $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+                $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+                $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+                $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+
+                $config['upload_path']          = './images/';
+                $config['allowed_types']        = 'jpeg|jpg|png';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                
+                $this->upload->do_upload();
+                $dataInfo[$i] = $this->upload->data();
+            }
+            $image1 = $dataInfo[0]['file_name'];
+            $image2 = $dataInfo[1]['file_name'];
+            $produk->save($image1,$image2);
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        // $this->load->view("admin/product/new_form");
+        $this->load->view("input");
     }
 
     public function edit($id = null)

@@ -51,7 +51,7 @@ class Produk_model extends CI_Model
         return $this->db->get_where($this->_table, ["produk_id" => $id])->row();
     }
 
-    public function save()
+    public function save($image1,$image2)
     {
         $post = $this->input->post();
         // $this->produk_id = uniqid();
@@ -59,20 +59,20 @@ class Produk_model extends CI_Model
         $this->harga = $post["harga"];
         $this->jenis = $post["jenis"];
         $this->jumlah = $post["jumlah"];
-        $this->img = $post["img"];
-        $this->img2 = $post["img2"];
+        $this->img = $image1;
+        $this->img2 = $image2;
         $this->db->insert($this->_table, $this);
     }
 
-    public function update()
+    public function update($image1,$image2)
     {
         $post = $this->input->post();
         $this->nama = $post["nama"];
         $this->harga = $post["harga"];
         $this->jenis = $post["jenis"];
         $this->jumlah = $post["jumlah"];
-        $this->img = $post["img"];
-        $this->img2 = $post["img2"];
+        $this->img = $image1;
+        $this->img2 = $image2;
         $this->db->update($this->_table, $this, array('produk_id' => $post['id']));
     }
 
@@ -80,4 +80,24 @@ class Produk_model extends CI_Model
     {
         return $this->db->delete($this->_table, array("produk_id" => $id));
     }
+
+    private function _uploadImage()
+    {
+    $config['upload_path']          = './images/';
+    $config['allowed_types']        = 'jpeg|jpg|png';
+    $config['file_name']            = $this->product_id;
+    $config['overwrite']            = true;
+    $config['max_size']             = 1024; // 1MB
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('image')) {
+        return $this->upload->data("file_name");
+    }
+    
+    return "default.jpg";
+    }
+
 }
