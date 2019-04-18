@@ -24,8 +24,6 @@
                     <div class="card-body">
                         <h5 class="card-title text-center"><a href="#"><?php echo $pr->nama ?></a></h5>
                         <p class="card-text text-center"><a href="#">Rp <?php echo $pr->harga ?></a></p>
-                        <button>hapus</button>
-                        <button>edit</button>
                     </div>
                 </div>
             </div>

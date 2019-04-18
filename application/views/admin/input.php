@@ -3,7 +3,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-center">
-                    Form Tambah Produk
+                    Form Input Produk
                 </div>
                 <div class="card-body">
                     <form action="<?php base_url('Produk/add') ?>" method="post" enctype="multipart/form-data">

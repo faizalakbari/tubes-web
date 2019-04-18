@@ -55,3 +55,58 @@ img {
   	margin-left: 15.5%;
   	padding: 20px;
 }
+
+.tombol {
+	margin-left: 92%;
+}
+
+.show {
+	display:block;
+}
+
+/* CSS Footer */
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  font-size: 0.7em;
+  color: grey;	
+}
+
+.listfoot {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+th a {
+	padding : 40px;
+	color: grey;
+	font-size: 10px;
+	font-family: sans-serif;
+}
+
+.hvr: hover {
+	text-decoration: none;
+	color: : black;
+}
+
+
+.garis {
+	margin-top: 70px; 
+}
