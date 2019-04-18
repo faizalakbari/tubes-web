@@ -13,7 +13,7 @@ class Produk extends CI_Controller
 
     public function index()
     {
-        $data['judul'] = 'TES';
+        $data['judul'] = 'All';
         $data['produk'] = $this->Produk_model->getAll();
         $this->load->view('templates/Navbar', $data);
         $this->load->view('admin/shop_all', $data);
@@ -23,7 +23,7 @@ class Produk extends CI_Controller
 
     public function add()
     {
-        $data['judul'] = 'Form Tambah Data';
+        $data['judul'] = 'Input Data';
         $produk = $this->Produk_model;
         $validation = $this->form_validation;
         $validation->set_rules($produk->rules());

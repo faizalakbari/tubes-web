@@ -18,7 +18,6 @@
             <div class="col-4 h-100 mb-3">
                 <div class="card">
                     <a href="#">
-                        <!-- <img src="images/Afghani_Deep_Indigo_Selvage_1.PNG" onmouseover="this.src='images/Afghani_Deep_Indigo_Selvage_2.PNG';" onmouseout="this.src='images/Afghani_Deep_Indigo_Selvage_1.PNG';" class="card-img-top" alt="..." height="400" width="150"> -->
                         <img src="<?php echo base_url('images/'.$pr->img)?>" onmouseover="this.src='<?php echo base_url('images/'.$pr->img2)?>';" onmouseout="this.src='<?php echo base_url('images/'.$pr->img)?>';" class="card-img-top" alt="..." height="450">
                     </a>
                     <div class="card-body">

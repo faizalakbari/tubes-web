@@ -7,27 +7,25 @@ class Kontak extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("kontak_model");
+        $this->load->model("Kontak_model");
         $this->load->library('form_validation');
     }
 
-    // public function index()
-    // {
-    //     $data["kontak"] = $this->kontak_model->getAll();
-    //     $this->load->view("shop_all", $data);
-    // }
-
     public function add()
     {
-        $kontak = $this->kontak_model;
+        $data['judul'] = 'Contact Us';
+        $kontak = $this->Kontak_model;
         $validation = $this->form_validation;
         $validation->set_rules($kontak->rules());
-
+        $this->load->view('templates/Navbar', $data);
+        $this->load->view('templates/footer');
         if ($validation->run()) {
             $kontak->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
+            $this->load->view("Contact");
         }
-
-        // $this->load->view("");
+        else{
+            $this->load->view("Contact");
+        }
     }
 }

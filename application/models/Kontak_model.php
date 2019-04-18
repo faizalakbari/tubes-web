@@ -22,7 +22,7 @@ class Kontak_model extends CI_Model
 
             ['field' => 'telp',
             'label' => 'Phone Number',
-            'rules' => 'numeric'],
+            'rules' => 'required'],
             
             ['field' => 'pesan',
             'label' => 'Message',
