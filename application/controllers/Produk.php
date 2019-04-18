@@ -23,11 +23,12 @@ class Produk extends CI_Controller
 
     public function add()
     {
-        $data['judul'] = 'Input Data';
+        $data['judul'] = 'Input Produk';
         $produk = $this->Produk_model;
         $validation = $this->form_validation;
         $validation->set_rules($produk->rules());
         $this->load->view('templates/Navbar', $data);
+        $this->load->view("admin/input",$data);
         $this->load->view('templates/footer');
 
         if ($validation->run()) {
@@ -55,41 +56,57 @@ class Produk extends CI_Controller
             $image1 = $dataInfo[0]['file_name'];
             $image2 = $dataInfo[1]['file_name'];
             $produk->save($image1,$image2);
-            // $this->session->set_flashdata('success', 'Berhasil disimpan');
-            $this->load->view("admin/input");
+            redirect(base_url());
         }
-        else{
-            $this->load->view("admin/input");
-        }
-
         
     }
 
     public function edit($id = null)
     {
-        // if (!isset($id)) redirect('admin/products');
+        $data['judul'] = 'Edit Produk';
+        $produk = $this->Produk_model;
+        $data["produk"] = $produk->getById($id);
        
-        $produk = $this->produk_model;
         $validation = $this->form_validation;
         $validation->set_rules($produk->rules());
+        $this->load->view('templates/Navbar', $data);
+        $this->load->view("admin/edit",$data);
+        $this->load->view('templates/footer');
 
         if ($validation->run()) {
-            $produk->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
+            $dataInfo = array();
+            $files = $_FILES;
+            $cpt = count($_FILES['userfile']['name']);
+            for($i=0; $i<$cpt; $i++)
+            {           
+                $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+                $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+                $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+                $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+                $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 
-        $data["produk"] = $produk->getById($id);
-        if (!$data["produk"]) show_404();
-        
-        // $this->load->view("admin/product/edit_form", $data);
+                $config['upload_path']          = './images/';
+                $config['allowed_types']        = 'jpeg|jpg|png';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                
+                $this->upload->do_upload();
+                $dataInfo[$i] = $this->upload->data();
+            }
+            $image1 = $dataInfo[0]['file_name'];
+            $image2 = $dataInfo[1]['file_name'];
+            $produk->update($image1,$image2);
+            redirect(base_url());
+        }
     }
 
     public function delete($id=null)
     {
         if (!isset($id)) show_404();
         
-        if ($this->produk_model->delete($id)) {
-            // redirect(site_url('admin/products'));
+        if ($this->Produk_model->delete($id)) {
+            redirect(base_url());
         }
     }
 }

@@ -1,9 +1,5 @@
-<style>
-    .card{
-        border: none;
-    }
-</style>   
-   <div class="container" style="margin-top: 150px;">
+ 
+   <div class="container" style="margin-top: 150px; margin-bottom: 150px;">
     <div class="row mt-3">
       <div class="col">
         <div class="card">

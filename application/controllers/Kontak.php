@@ -18,14 +18,15 @@ class Kontak extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($kontak->rules());
         $this->load->view('templates/Navbar', $data);
+        $this->load->view("Contact",$data);
         $this->load->view('templates/footer');
         if ($validation->run()) {
             $kontak->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
-            $this->load->view("Contact");
+            $this->load->view('templates/Navbar', $data);
         }
         else{
-            $this->load->view("Contact");
+            $this->load->view('templates/Navbar', $data);
         }
     }
 }

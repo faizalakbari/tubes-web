@@ -1,10 +1,11 @@
 <style>
-    .card{
-        border: none;
+    a{
+        color: #003300;
+        
     }
-    a.card, a.card:hover {
-        color: #212529;
+    a:hover{
         text-decoration: none;
+        color: #006600;
     }
 </style>
 <div class="container">
@@ -15,15 +16,17 @@
     </div>
     <div class="row">
         <?php foreach ($produk as $pr): ?>
-            <div class="col-4 h-100 mb-3">
+            <div class="col-3 h-100 mb-3">
                 <div class="card">
                     <a href="#">
-                        <!-- <img src="images/Afghani_Deep_Indigo_Selvage_1.PNG" onmouseover="this.src='images/Afghani_Deep_Indigo_Selvage_2.PNG';" onmouseout="this.src='images/Afghani_Deep_Indigo_Selvage_1.PNG';" class="card-img-top" alt="..." height="400" width="150"> -->
-                        <img src="<?php echo base_url('images/'.$pr->img)?>" onmouseover="this.src='<?php echo base_url('images/'.$pr->img2)?>';" onmouseout="this.src='<?php echo base_url('images/'.$pr->img)?>';" class="card-img-top" alt="..." height="450">
+                        <img src="<?php echo base_url('images/'.$pr->img)?>" onmouseover="this.src='<?php echo base_url('images/'.$pr->img2)?>';" onmouseout="this.src='<?php echo base_url('images/'.$pr->img)?>';" class="card-img-top" alt="..." height="400">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title text-center"><a href="#"><?php echo $pr->nama ?></a></h5>
-                        <p class="card-text text-center"><a href="#">Rp <?php echo $pr->harga ?></a></p>
+                        <a href="#">
+                            <h5 class="card-title text-center"><?php echo $pr->nama ?></h5>
+                            <p class="card-text text-center" style="color: grey;">Rp <?php echo $pr->harga ?></p>
+                        </a>
+                        
                     </div>
                 </div>
             </div>

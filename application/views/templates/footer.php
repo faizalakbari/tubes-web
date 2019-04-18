@@ -12,7 +12,6 @@
 	      </tr>
     	</table>
     </center>
-
     <center>
     	<table class="listfoot">
 	      <tr>
@@ -23,7 +22,7 @@
 	          <a href="#">PAYMENT CONFIRMATION</a>
 	        </th>
 	        <th >
-	          <a  href="#" >CONTACT US</a>
+	          <a  href="<?= base_url(); ?>kontak/add" >CONTACT US</a>
 	        </th>
 	        <th >
 	          <a  href="#">WHOLESALE</a>
@@ -40,8 +39,6 @@
     <center>
 		<a>© POT MEETS POP DENIM 2019<a>
 	</center>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</div>
 </body>
 </html>
