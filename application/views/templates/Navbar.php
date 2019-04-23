@@ -53,10 +53,21 @@ window.onclick = function(event) {
           <a class="nav-link" href="<?= base_url(); ?>">HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>produk">SHOP</a>
+           <div class="dropdown">
+            <a class="nav-link dropbtn" href="<?= base_url(); ?>produk">SHOP</a>
+            <div class="dropdown-content">
+              <a href="#">NEW ARRIVALS</a>
+              <a href="#">PANTS</a>
+              <a href="#">SHIRTS</a>
+              <a href="#">T-SHIRTS</a>
+              <a href="#">JACKETS</a>
+              <a href="#">VESTS</a>
+              <a href="#">ACCESSORIES</a>
+            </div>
+          </div> 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>stockist" tabindex="-1" aria-disabled="true">STOCKIST</a>
+          <a class="nav-link" href="<?= base_url(); ?>home/stockist">STOCKIST</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>kontak/add">CONTACT</a>
@@ -66,6 +77,9 @@ window.onclick = function(event) {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url(); ?>produk/add">INPUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url(); ?>auth/logout">LOGOUT</a>
         </li>
       </ul>
     </strong>
